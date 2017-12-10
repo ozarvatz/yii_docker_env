@@ -4,7 +4,7 @@ for installation:
 1. install docker version >= 17.09.0-ce from https://docs.docker.com/engine/installation/ .
 2. install docker-compose version >= 1.16.1 from https://docs.docker.com/compose/install/ .
 
-3. locate the code at yii2advances/advanced, the code from https://github.com/ozarvatz/yii2advances.git.
+3. locate the code at php_code/yii2advances/advanced, the code from https://github.com/ozarvatz/yii2advances.git.
 4. cd to env folder.
 5. docker-compose -f docker-compose-yii2-advanced.yml up -d
 6. http://localhost:8000/frontend.dev/index.php?r=game
