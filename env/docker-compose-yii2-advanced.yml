@@ -1,0 +1,51 @@
+mysql-server:
+  build: ./mysql
+  container_name: arliku_mysql_server
+  mem_limit: 256m
+  volumes:
+    - ./mysql/log:/var/log
+    - ./mysql/database_dumps:/dumps
+    # - ./mysql/data:/backup
+    # - ./mysql/data:/var/lib/mysql:rw
+  environment:
+    - MYSQL_ROOT_PASSWORD=1234
+    - MYSQL_USER=arliku
+    - MYSQL_PASSWORD=1234
+    - MYSQL_DATABAS=arliku_v1
+    # - DB_HOST=arliku_app
+  ports:
+    - "3306:3306"
+    - "33060:33060"
+  restart: always
+
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  container_name: phpmyadmin
+  mem_limit: 60m
+  environment:
+    - PMA_ARBITRARY=1
+    - MYSQL_ROOT_PASSWORD=1234
+  restart: always
+  links:
+    - mysql-server:db
+  ports:
+    - 8181:80
+
+appachphp:
+  build: ./php
+  container_name: arliku_app
+  restart: always
+  
+yii2_advanced:
+  build: ./php_yii2_advanced
+  container_name: yii2_advanced_app
+  mem_limit: 256m
+  volumes:
+    - ../php_code/yii2advances:/var/www/html/yii2advances
+  links:
+    - mysql-server
+    - appachphp
+  ports:
+    - "8000:80"
+    - "4430:443"
+  restart: always
