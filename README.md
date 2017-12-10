@@ -15,9 +15,9 @@ mysql 5.5.
 phpmyadmin - localhost:8181 username : root password : 1234 .
 
 to get into command line:
->docker ps -a
+docker ps -a
 copy the container_id of env_yii2_advanced
-> docker exec -it container_id bash
+docker exec -it container_id bash
 
 
 
